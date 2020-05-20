@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <html>
 <body>
+<h1>branch1</h1>
     <form method="post" action="findGood">
         输入名称:<input type="text" name="name">
         </br><input type="submit" value="查询">
@@ -30,5 +31,6 @@
         </tr>
         </c:forEach>
     </table>
+
 </body>
 </html>

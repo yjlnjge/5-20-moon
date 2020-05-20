@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.swjd.dao.IGoodDao">
+    <select id="findOne" resultType="com.swjd.pojo.Good">
+        SELECT * from good where id = #{id};
+    </select>
+    <!--
+        SQL:SELECT  id,name,age from student  where name  like  '%将%'
+    -->
+    <select id="findByName" parameterType="java.lang.String" resultType="com.swjd.pojo.Good">
+        select * from good where 1=1
+        <if test="#{name!=null and name!=''}">
+            and  name like '%${name}%'
+        </if>
+    </select>
+    <!--    添加学生信息-->
+    <insert id="add" parameterType="com.swjd.pojo.Good">
+        insert into Good(id,date,price,name) value(#{id},#{date},#{price},#{name});
+    </insert>
+    <!--    删除学生信息-->
+    <delete id="delete" parameterType="java.lang.Integer">
+
+        delete from Good where id =#{id};
+    </delete>
+    <!--    更新学生信息-->
+    <update id="update" parameterType="com.swjd.pojo.Good">
+        update Good
+        <trim prefix="set" suffixOverrides=",">
+            <if test="#{date!=null}">date=#{date},</if>
+            <if test="#{price!=null}">price=#{price},</if>
+            <if test="#{name!=null}">name=#{name},</if>
+
+        </trim>
+        where id=#{id};
+
+    </update>
+</mapper>
+    
